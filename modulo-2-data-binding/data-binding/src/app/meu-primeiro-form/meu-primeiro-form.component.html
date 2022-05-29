@@ -1,0 +1,41 @@
+<section class="two-way-binding">
+  <article>
+    <h3>Two-way data binding</h3>
+    <div>
+      <!-- 1a forma -->
+      <input type="text"
+        [value]="nome"
+        (input)="nome = $any($event.target).value"
+      />
+
+      <p>Você digitou: {{ nome }}</p>
+
+      <!-- 2a forma -->
+      <input type="text"
+        [ngModel]="nome2"
+        (ngModelChange)="nome2 = $event"
+      />
+
+      <p>Você digitou: {{ nome2 }}</p>
+
+      <!-- 3a forma - two way -->
+      <input type="text"
+        [(ngModel)]="nome3"
+      />
+
+      <p>Você digitou: {{ nome3 }}</p>
+
+      <!-- 3a forma com objeto - two way -->
+      <input type="text"
+        [(ngModel)]="pessoa.nome"
+      />
+      <input type="text"
+        [(ngModel)]="pessoa.idade"
+      />
+
+      <p>Meu nome é {{ pessoa.nome }} e tenho {{ pessoa.idade }} anos</p>
+
+    </div>
+  </article>
+</section>
+
