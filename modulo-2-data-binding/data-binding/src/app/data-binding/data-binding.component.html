@@ -8,11 +8,49 @@
     <p>Curso de Angular e gosto do curso: {{ cursoAngular && getCurtirCurso() }}</p>
   </article>
 
-  <article>
+  <!-- <article>
     <h3>Property Binding</h3>
     <img src="{{ urlImagem }}" >
     <img [src]="urlImagem" >
     <img bind-src="urlImagem" >
+  </article> -->
+
+</section>
+
+<section>
+
+  <article>
+    <h3>Class e Style Binding</h3>
+    <div>
+      Selecione uma classe:
+      <select #classe (change)="0">
+        <option value="alert-success">Sucesso</option>
+        <option value="alert-info">Info</option>
+        <option value="alert-warning">Alerta</option>
+        <option value="alert-danger">Erro</option>
+      </select>
+      <br><br>
+      <div class="alert {{ classe.value }}" role="alert">
+        Texto colorido conforme valor do combobox.
+      </div>
+      <br>
+      <div class="alert alert-info" role="alert" [style.display]="classe.value == 'alert-info' ? 'block' : 'none'">
+        Esse texto só aparece em caso de Info
+      </div>
+      <br>
+      <div class="alert" role="alert" [class.alert-success]="classe.value == 'alert-success'">
+        Sucesso
+      </div>
+      <div class="alert" role="alert" [class.alert-danger]="classe.value == 'alert-danger'">
+        Erro
+      </div>
+      <div class="alert" role="alert" [class.alert-warning]="classe.value == 'alert-warning'">
+        Alerta
+      </div>
+      <div class="alert" role="alert" [class.alert-info]="classe.value == 'alert-info'">
+        Info
+      </div>
+    </div>
   </article>
 
 </section>
