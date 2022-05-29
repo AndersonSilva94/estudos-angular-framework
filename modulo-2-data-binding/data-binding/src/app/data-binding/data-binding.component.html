@@ -1,4 +1,4 @@
-<section class="property-binding">
+<!-- <section class="property-binding">
 
   <article>
     <h3>interpolation/ Interpolação</h3>
@@ -8,16 +8,16 @@
     <p>Curso de Angular e gosto do curso: {{ cursoAngular && getCurtirCurso() }}</p>
   </article>
 
-  <!-- <article>
+  <article>
     <h3>Property Binding</h3>
     <img src="{{ urlImagem }}" >
     <img [src]="urlImagem" >
     <img bind-src="urlImagem" >
-  </article> -->
+  </article>
 
-</section>
+</section> -->
 
-<section>
+<!-- <section class="class-binding">
 
   <article>
     <h3>Class e Style Binding</h3>
@@ -53,4 +53,29 @@
     </div>
   </article>
 
+</section> -->
+
+<section class="event-binding">
+  <article>
+    <h3>Event Binding</h3>
+    <div>
+      <button class="btn btn-primary" (click)="botaoClicado()">Me clique</button>
+      <br><br>
+      <input
+        type="text"
+        (keyup)="onKeyUp($event)"
+        (keyup.enter)="salvarValor($any(campoInput).value)"
+        (blur)="salvarValor($any(campoInput).value)"
+        #campoInput
+        >
+      <p>Valor atual: {{ valorAtual }}</p>
+      <p>Valor salvo: {{ valorSalvo }}</p>
+      <br><br>
+      <span
+      (mouseover)="onMouseOverOut()"
+      (mouseout)="onMouseOverOut()"
+      [class.highlight]="isMouseOver"
+      >Passe o mouse sobre mim!</span>
+    </div>
+  </article>
 </section>
