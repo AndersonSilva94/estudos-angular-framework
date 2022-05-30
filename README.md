@@ -5,7 +5,7 @@ O repositório apresenta todos os estudos realizados no curso de Angular da prof
 ## Conteúdos a serem estudados (em ordem de disposição das aulas e por módulo)
 
 - [x] Introdução;
-- [ ] Data binding;
+- [x] Data binding;
 - [ ] Angular CLI;
 - [ ] Diretivas;
 - [ ] Serviços;
