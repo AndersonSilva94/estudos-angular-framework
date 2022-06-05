@@ -6,7 +6,7 @@ O repositório apresenta todos os estudos realizados no curso de Angular da prof
 
 - [x] Introdução;
 - [x] Data binding;
-- [ ] Angular CLI;
+- [x] Angular CLI;
 - [ ] Diretivas;
 - [ ] Serviços;
 - [ ] Pipes (Filtros);
