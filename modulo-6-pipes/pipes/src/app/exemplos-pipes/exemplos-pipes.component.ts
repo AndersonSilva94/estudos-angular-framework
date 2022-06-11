@@ -16,9 +16,17 @@ export class ExemplosPipesComponent implements OnInit {
     url: 'https://www.amazon.com.br/Batalha-Apocalipse-queda-anjos-crep%C3%BAsculo/dp/8576860767/ref=sr_1_3?keywords=a+batalha+do+apocalipse&qid=1654884161&s=books&sprefix=a+batalha%2Cstripbooks%2C1174&sr=1-3'
   }
 
+  livros: string[] = ['Percy Jackson', 'Game of Thrones'];
+
+  filtro: string = '';
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  addLivro(newBook: string) {
+    this.livros.push(newBook)
   }
 
 }
