@@ -3,7 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AlunosGuard } from './guards/alunos.guard';
 import { AuthGuard } from './guards/auth.guard';
+import { CursosGuard } from './guards/cursos.guard';
 // import { CursosModule } from './cursos/cursos.module';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './login/auth.service';
@@ -31,7 +33,12 @@ import { LoginModule } from './login/login.module';
     AppRoutingModule
   ],
   // providers: [CursosService],
-  providers: [AuthService, AuthGuard],
+  providers: [
+    AuthService,
+    AuthGuard,
+    CursosGuard,
+    AlunosGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
