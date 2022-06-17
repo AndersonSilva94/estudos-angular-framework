@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthService } from './login/auth.service';
 import { LoginComponent } from './login/login.component';
 import { LoginModule } from './login/login.module';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 // import { AlunosModule } from './alunos/alunos.module';
 // import { CursosComponent } from './cursos/cursos.component';
 // import { CursoDetalheComponent } from './cursos/curso-detalhe/curso-detalhe.component';
@@ -21,6 +22,7 @@ import { LoginModule } from './login/login.module';
   declarations: [
     AppComponent,
     HomeComponent,
+    PaginaNaoEncontradaComponent,
     // CursosComponent,
     // CursoDetalheComponent,
     // CursoNaoEncontradoComponent
