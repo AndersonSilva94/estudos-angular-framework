@@ -6,9 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./template-form.component.css']
 })
 export class TemplateFormComponent implements OnInit {
+  // caso queria utilizar os valores para alterar o objeto, usado o two-way data-bind, sn só o property-bind
+  usuario: any = {
+    nome: 'Andy',
+    email: 'andy@email.com'
+  }
 
   onSubmit(form: any) {
-    console.log(form)
+    console.log(form.value)
+
+    console.log(this.usuario)
   }
 
   constructor() { }
