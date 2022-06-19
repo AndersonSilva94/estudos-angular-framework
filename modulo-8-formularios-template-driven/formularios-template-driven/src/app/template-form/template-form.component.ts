@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-template-form',
@@ -12,7 +13,7 @@ export class TemplateFormComponent implements OnInit {
     email: null
   }
 
-  onSubmit(form: any) {
+  onSubmit(form: NgForm) {
     console.log(form)
 
     console.log(this.usuario)
