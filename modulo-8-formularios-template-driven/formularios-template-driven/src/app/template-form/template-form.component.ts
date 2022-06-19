@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class TemplateFormComponent implements OnInit {
   // caso queria utilizar os valores para alterar o objeto, usado o two-way data-bind, sn só o property-bind
   usuario: any = {
-    nome: 'Andy',
-    email: 'andy@email.com'
+    nome: null,
+    email: null
   }
 
   onSubmit(form: any) {
