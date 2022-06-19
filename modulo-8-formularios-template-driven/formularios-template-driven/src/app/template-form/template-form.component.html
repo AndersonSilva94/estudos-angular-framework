@@ -14,12 +14,9 @@
         required
         #nome="ngModel"
       >
-      <div
-        *ngIf="!nome.valid && nome.touched"
-        class="alert alert-danger" role="alert"
-      >
-        Nome é obrigatório.
-      </div>
+      <app-campo-control-erro
+        [mostrarErro]="verificaValidTouched(nome)" msgErro="Nome é obrigatório.">
+      </app-campo-control-erro>
       <!-- <div>
         {{ nome.className }}
       </div> -->
@@ -39,23 +36,17 @@
         email
         #email="ngModel"
       >
-      <div
-        *ngIf="!email.valid && email.touched"
-        class="alert alert-danger" role="alert"
-      >
-        Email é obrigatório.
-      </div>
+      <app-campo-control-erro
+        [mostrarErro]="verificaValidTouched(email)" msgErro="Email é obrigatório.">
+      </app-campo-control-erro>
     </div>
 
     <div class="form-group mt-3 col-md-3">
       <label for="cep" class="control-label">CEP</label>
       <input type="text" id="cep" class="form-control" name="cep" ngModel required #cep="ngModel">
-      <div
-        *ngIf="!cep.valid && cep.touched"
-        class="alert alert-danger" role="alert"
-      >
-        CEP é obrigatório.
-      </div>
+      <app-campo-control-erro
+        [mostrarErro]="verificaValidTouched(cep)" msgErro="CEP é obrigatório.">
+      </app-campo-control-erro>
     </div>
 
     <div class="form-group mt-3 col-md-3">

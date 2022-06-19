@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { TemplateFormComponent } from './template-form/template-form.component';
 import { DataFormComponent } from './data-form/data-form.component';
 import { FormDebugComponent } from './form-debug/form-debug.component';
+import { CampoControlErroComponent } from './campo-control-erro/campo-control-erro.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { FormDebugComponent } from './form-debug/form-debug.component';
     // não funcionou colocar o TemplateFormComponent no imports
     TemplateFormComponent,
     DataFormComponent,
-    FormDebugComponent
+    FormDebugComponent,
+    CampoControlErroComponent
   ],
   imports: [
     BrowserModule,
