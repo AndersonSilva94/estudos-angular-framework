@@ -10,6 +10,7 @@ import { DataFormComponent } from './data-form/data-form.component';
 @NgModule({
   declarations: [
     AppComponent,
+    // não funcionou colocar o TemplateFormComponent no imports
     TemplateFormComponent,
     DataFormComponent
   ],
