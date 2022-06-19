@@ -1,5 +1,7 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f)">
-  <div class="form-group">
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="needs-validation was-validated" novalidate>
+  <div
+    class="form-group"
+  >
     <label for="nome">Nome</label>
     <input
       type="text"
@@ -9,8 +11,14 @@
       placeholder="Seu nome"
       [(ngModel)]="usuario.nome"
       required
-      #nome
+      #nome="ngModel"
     >
+    <div
+      *ngIf="!nome.valid && nome.touched"
+      class="alert alert-danger" role="alert"
+    >
+      Nome é obrigatório.
+    </div>
     <!-- <div>
       {{ nome.className }}
     </div> -->
@@ -27,7 +35,14 @@
       [(ngModel)]="usuario.email"
       required
       email
+      #email="ngModel"
     >
+    <div
+      *ngIf="!email.valid && email.touched"
+      class="alert alert-danger" role="alert"
+    >
+      Email é obrigatório.
+    </div>
   </div>
 
   <button type="submit" class="btn btn-primary mt-4">Submit</button>

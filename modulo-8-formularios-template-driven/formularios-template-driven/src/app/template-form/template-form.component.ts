@@ -13,7 +13,7 @@ export class TemplateFormComponent implements OnInit {
   }
 
   onSubmit(form: any) {
-    console.log(form.value)
+    console.log(form)
 
     console.log(this.usuario)
   }
