@@ -10,7 +10,9 @@ export class DataFormComponent implements OnInit {
 
   formulario: FormGroup = new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
 
@@ -20,6 +22,7 @@ export class DataFormComponent implements OnInit {
       email: new FormControl(null),
     }); */
 
+    // 2ª forma
     this.formulario = this.formBuilder.group({
       nome: [null],
       email: [null],

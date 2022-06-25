@@ -3,10 +3,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { DataFormComponent } from './data-form.component';
+import { FormDebugComponent } from '../form-debug/form-debug.component';
 
 @NgModule({
   declarations: [
-    DataFormComponent
+    DataFormComponent,
+    FormDebugComponent
   ],
   imports: [
     CommonModule,
