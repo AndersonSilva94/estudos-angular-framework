@@ -16,9 +16,13 @@ export class TemplateFormComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form)
+    // console.log(form)
 
-    console.log(this.usuario)
+    // console.log(this.usuario)
+
+    this.http.post('enderecoServer/formUsuario', JSON.stringify(form.value))
+      .pipe(map(dados => dados))
+      .subscribe(dados => console.log(dados))
   }
 
   verificaValidTouched(campo: any) {
@@ -30,7 +34,7 @@ export class TemplateFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  consultaCEP(cep: string, f: any) {
+  consultaCEP(cep: string, f: NgForm) {
     // cep somente com números
     cep = cep.replace(/\D/g, '');
 
@@ -50,7 +54,7 @@ export class TemplateFormComponent implements OnInit {
     }
   }
 
-  populaDadosForm(dados: any, formulario: any) {
+  populaDadosForm(dados: any, formulario: NgForm) {
     /* formulario.setValue({
       nome: formulario.value.nome,
       email: formulario.value.email,
