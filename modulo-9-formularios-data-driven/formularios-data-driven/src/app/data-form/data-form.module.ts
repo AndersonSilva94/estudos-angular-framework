@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { DataFormComponent } from './data-form.component';
 import { FormDebugComponent } from '../form-debug/form-debug.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { FormDebugComponent } from '../form-debug/form-debug.component';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class DataFormModule { }
