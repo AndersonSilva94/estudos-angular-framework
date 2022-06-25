@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators'
 
@@ -27,14 +27,14 @@ export class DataFormComponent implements OnInit {
 
     // 2ª forma
     this.formulario = this.formBuilder.group({
-      nome: [null],
-      email: [null],
+      nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      email: [null, [Validators.required, Validators.email]],
     })
 
   }
 
   onSubmit() {
-    // console.log(this.formulario.value)
+    console.log(this.formulario)
 
     this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
       .pipe(map(dados => dados))
@@ -42,7 +42,7 @@ export class DataFormComponent implements OnInit {
         console.log(dados);
 
         //reseta o form
-        this.resetar();
+        // this.resetar();
       },
         (err: any) => alert('erro')
       )
