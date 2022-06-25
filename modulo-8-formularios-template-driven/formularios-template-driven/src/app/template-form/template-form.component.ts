@@ -30,7 +30,7 @@ export class TemplateFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  consultaCEP(cep: string) {
+  consultaCEP(cep: string, f: any) {
     // cep somente com números
     cep = cep.replace(/\D/g, '');
 
@@ -45,10 +45,38 @@ export class TemplateFormComponent implements OnInit {
 
         this.http.get(`https://viacep.com.br/ws/${cep}/json`)
           .pipe(map((dados: any) => dados))
-          .subscribe(dados => console.log(dados));
+          .subscribe(dados => this.populaDadosForm(dados, f));
       }
-
     }
+  }
+
+  populaDadosForm(dados: any, formulario: any) {
+    /* formulario.setValue({
+      nome: formulario.value.nome,
+      email: formulario.value.email,
+      endereco: {
+        rua: dados.logradouro,
+        cep: dados.cep,
+        numero: '',
+        complemento: dados.complemento,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf
+      }
+    }); */
+
+    formulario.form.patchValue({
+      endereco: {
+        rua: dados.logradouro,
+        cep: dados.cep,
+        complemento: dados.complemento,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf
+      }
+    })
+
+    // console.log(formulario)
   }
 
 }
