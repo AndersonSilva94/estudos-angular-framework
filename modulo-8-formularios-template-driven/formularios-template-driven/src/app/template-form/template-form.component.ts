@@ -20,7 +20,8 @@ export class TemplateFormComponent implements OnInit {
 
     // console.log(this.usuario)
 
-    this.http.post('enderecoServer/formUsuario', JSON.stringify(form.value))
+    //this.http.post('enderecoServer/formUsuario', JSON.stringify(form.value))
+    this.http.post('https://httpbin.org/post', JSON.stringify(form.value))
       .pipe(map(dados => dados))
       .subscribe(dados => console.log(dados))
   }
