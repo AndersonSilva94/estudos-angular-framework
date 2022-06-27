@@ -47,6 +47,7 @@
           id="cep"
           class="form-control"
           formControlName="cep"
+          (blur)="consultaCEP()"
         >
         <app-campo-control-erro
           [mostrarErro]="verificaValidTouched('endereco.cep')" msgErro="CEP é obrigatório.">
