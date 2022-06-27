@@ -46,18 +46,43 @@ export class DataFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formulario)
+    // console.log(this.formulario)
 
-    this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
-      .pipe(map(dados => dados))
-      .subscribe(dados => {
-        console.log(dados);
+    if (this.formulario.valid) {
+      this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
+        .pipe(map(dados => dados))
+        .subscribe(dados => {
+          console.log(dados);
 
-        //reseta o form
-        // this.resetar();
-      },
-        (err: any) => alert('erro')
-      )
+          //reseta o form
+          // this.resetar();
+        },
+          (err: any) => alert('erro')
+        );
+    } else {
+      // console.log('formulario inválido')
+
+      this.verificaValidacoesForm(this.formulario)
+
+    }
+
+  }
+
+  // método genérico para fazer validação em qualquer formulário
+  // os dados entram e verificam se é do tipo FormGroup caso seja, o método é chamado de novo
+  verificaValidacoesForm(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(
+      campo => {
+        console.log(campo)
+        const controle = formGroup.get(campo);
+        controle?.markAsDirty();
+
+        if (controle instanceof FormGroup) {
+          this.verificaValidacoesForm(controle);
+        }
+
+      }
+    );
   }
 
   resetar() {
@@ -65,7 +90,7 @@ export class DataFormComponent implements OnInit {
   }
 
   verificaValidTouched(campo: any) {
-    return !this.formulario.get(campo)?.valid && this.formulario.get(campo)?.touched;
+    return !this.formulario.get(campo)?.valid && (this.formulario.get(campo)?.touched || this.formulario.get(campo)?.dirty);
   }
 
   verificaEmailInvalido() {
