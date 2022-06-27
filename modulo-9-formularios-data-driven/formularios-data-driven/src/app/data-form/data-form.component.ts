@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators'
+import { DropdownService } from '../shared/services/dropdown.service';
+import { EsatdoBr } from '../shared/models/esatdo-br';
 
 @Component({
   selector: 'app-data-form',
@@ -10,14 +12,24 @@ import { map } from 'rxjs/operators'
 })
 export class DataFormComponent implements OnInit {
 
+  // a exclamação é uma forma de não instanciar uma classe
   formulario!: FormGroup;
+  estados!: EsatdoBr[];
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private dropdownService: DropdownService
   ) { }
 
   ngOnInit(): void {
+
+    // pegar os dados do serviço ao iniciar
+    this.dropdownService.getEstadosBr()
+      .subscribe(dados => {
+        this.estados = dados
+        console.log(dados)
+      })
 
     // 1ª forma
     /* this.formulario = new FormGroup({
