@@ -111,6 +111,15 @@
           </option>
         </select>
       </div>
+
+      <div class="form-group mt-3 col-md-3">
+        <label for="tecnologias" class="control-label">Tecnologias</label>
+        <select multiple id="tecnologias" class="form-control" formControlName="tecnologias">
+          <option *ngFor="let tecnologia of tecnologias" [value]="tecnologia.nome">
+            {{ tecnologia.desc }}
+          </option>
+        </select>
+      </div>
     </div>
   </div>
 
@@ -122,8 +131,9 @@
 <!--     [disabled]="!f.valid" -->
     Submit
   </button>
-  <button class="btn btn-warning mt-4" (click)="resetar()">Cancelar</button>
-  <button class="btn btn-warning mt-4" (click)="setarCargo()">Cargo</button>
+  <button class="btn btn-warning mt-4 submit-button" (click)="resetar()">Cancelar</button>
+  <button class="btn btn-warning mt-4 submit-button" (click)="setarCargo()">Cargo</button>
+  <button class="btn btn-warning mt-4 submit-button" (click)="setarTecnologias()">Tecnologias</button>
 
   <form-debug [form]="formulario"></form-debug>
 </form>

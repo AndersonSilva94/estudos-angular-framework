@@ -24,4 +24,13 @@ export class DropdownService {
       { nome: 'Dev', nivel: 'Senior', desc: 'Dev Sr' }
     ]
   }
+
+  getTecnologias() {
+    return [
+      { nome: 'javascript', desc: 'JavaScript' },
+      { nome: 'react', desc: 'React' },
+      { nome: 'angular', desc: 'Angular' },
+      { nome: 'python', desc: 'Python' },
+    ]
+  }
 }
