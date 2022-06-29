@@ -18,6 +18,7 @@ export class DataFormComponent implements OnInit {
   formulario!: FormGroup;
   // estados!: EstadoBr[];
   estados!: Observable<EstadoBr[]>;
+  cargos!: any[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,6 +31,7 @@ export class DataFormComponent implements OnInit {
 
     // dessa forma, o async no html faz o unsubscribe e impede vazemento de memória
     this.estados = this.dropdownService.getEstadosBr();
+    this.cargos = this.dropdownService.getCargos();
 
     // pegar os dados do serviço ao iniciar
     /* this.dropdownService.getEstadosBr()
@@ -59,8 +61,11 @@ export class DataFormComponent implements OnInit {
         bairro: [null, Validators.required],
         cidade: [null, Validators.required],
         estado: [null, Validators.required]
-      })
+      }),
+
+      cargo: [null]
     })
+
 
   }
 
@@ -157,6 +162,15 @@ export class DataFormComponent implements OnInit {
         estado: null
       }
     })
+  }
+
+  setarCargo() {
+    const cargo = { nome: 'Dev', nivel: 'Senior', desc: 'Dev Sr' }
+    this.formulario.get('cargo')?.setValue(cargo)
+  }
+
+  compararCargos(obj1: any, obj2: any) {
+    return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 === obj2;
   }
 
 }
