@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators'
 import { DropdownService } from '../shared/services/dropdown.service';
 import { EstadoBr } from '../shared/models/estado-br';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-data-form',
@@ -15,7 +16,8 @@ export class DataFormComponent implements OnInit {
 
   // a exclamação é uma forma de não instanciar uma classe
   formulario!: FormGroup;
-  estados!: EstadoBr[];
+  // estados!: EstadoBr[];
+  estados!: Observable<EstadoBr[]>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,12 +28,15 @@ export class DataFormComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // dessa forma, o async no html faz o unsubscribe e impede vazemento de memória
+    this.estados = this.dropdownService.getEstadosBr();
+
     // pegar os dados do serviço ao iniciar
-    this.dropdownService.getEstadosBr()
+    /* this.dropdownService.getEstadosBr()
       .subscribe(dados => {
         this.estados = dados
         console.log(dados)
-      })
+      }) */
 
     // 1ª forma
     /* this.formulario = new FormGroup({
