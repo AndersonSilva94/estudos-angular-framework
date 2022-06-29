@@ -3,7 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators'
 import { DropdownService } from '../shared/services/dropdown.service';
-import { EsatdoBr } from '../shared/models/esatdo-br';
+import { EstadoBr } from '../shared/models/estado-br';
+import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 
 @Component({
   selector: 'app-data-form',
@@ -14,12 +15,13 @@ export class DataFormComponent implements OnInit {
 
   // a exclamação é uma forma de não instanciar uma classe
   formulario!: FormGroup;
-  estados!: EsatdoBr[];
+  estados!: EstadoBr[];
 
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private dropdownService: DropdownService
+    private dropdownService: DropdownService,
+    private cepService: ConsultaCepService
   ) { }
 
   ngOnInit(): void {
@@ -115,22 +117,12 @@ export class DataFormComponent implements OnInit {
   consultaCEP() {
     let cep = this.formulario.get('endereco.cep')?.value
 
-    // cep somente com números
-    cep = cep.replace(/\D/g, '');
-
     //Verifica se campo cep possui valor informado.
-    if (cep != "" && cep != null) {
+    if (cep !== "" && cep != null) {
 
-      //Expressão regular para validar o CEP.
-      let validacep = /^[0-9]{8}$/;
-
-      //Valida o formato do CEP.
-      if(validacep.test(cep)) {
-
-        this.http.get(`https://viacep.com.br/ws/${cep}/json`)
-          .pipe(map((dados: any) => dados))
-          .subscribe(dados => this.populaDadosForm(dados));
-      }
+      this.cepService.consultaCEP(cep)
+        .pipe(map((dados: any) => dados))
+        .subscribe(dados => this.populaDadosForm(dados));
     }
   }
 
