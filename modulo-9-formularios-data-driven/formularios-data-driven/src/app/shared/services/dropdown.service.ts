@@ -28,8 +28,8 @@ export class DropdownService {
   getTecnologias() {
     return [
       { nome: 'javascript', desc: 'JavaScript' },
-      { nome: 'react', desc: 'React' },
-      { nome: 'angular', desc: 'Angular' },
+      { nome: 'php', desc: 'PHP' },
+      { nome: 'lua', desc: 'Lua' },
       { nome: 'python', desc: 'Python' },
     ]
   }

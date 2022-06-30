@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators'
 import { DropdownService } from '../shared/services/dropdown.service';
@@ -21,6 +21,7 @@ export class DataFormComponent implements OnInit {
   cargos!: any[];
   tecnologias!: any[];
   newsletterOp!: any[];
+  frameworks: string[] = ['Angular', 'React', 'Vue', 'Sencha'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -70,17 +71,38 @@ export class DataFormComponent implements OnInit {
       cargo: [null],
       tecnologias: [null],
       newsletter: ['s'],
-      termos: [null, Validators.pattern('true')]
+      termos: [null, Validators.pattern('true')],
+      frameworks: this.buildFrameworks()
     })
+  }
 
+  buildFrameworks() {
 
+    const values = this.frameworks.map(v => new FormControl(false));
+
+    return this.formBuilder.array(values);
+
+    /* this.formBuilder.array([
+      new FormControl(false),
+      new FormControl(false),
+      new FormControl(false),
+      new FormControl(false)
+    ]) */
   }
 
   onSubmit() {
-    // console.log(this.formulario)
+    console.log(this.formulario)
+
+    let valueSubmit = Object.assign({}, this.formulario.value);
+
+    valueSubmit = Object.assign(valueSubmit, {
+      frameworks: valueSubmit.frameworks
+        .map((v: any, i: any) => v ? this.frameworks[i] : null)
+        .filter((v: any) => v !== null)
+    })
 
     if (this.formulario.valid) {
-      this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
+      this.http.post('https://httpbin.org/post', JSON.stringify(valueSubmit))
         .pipe(map(dados => dados))
         .subscribe(dados => {
           console.log(dados);
@@ -181,7 +203,11 @@ export class DataFormComponent implements OnInit {
   }
 
   setarTecnologias() {
-    this.formulario.get('tecnologias')?.setValue(['javascript', 'angular'])
+    this.formulario.get('tecnologias')?.setValue(['javascript', 'php'])
+  }
+
+  getFrameworksControls() {
+    return this.formulario.get('frameworks') ? (<FormArray>this.formulario.get('frameworks')).controls : null;
   }
 
 }
