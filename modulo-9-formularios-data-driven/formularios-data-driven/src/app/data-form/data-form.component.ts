@@ -20,6 +20,7 @@ export class DataFormComponent implements OnInit {
   estados!: Observable<EstadoBr[]>;
   cargos!: any[];
   tecnologias!: any[];
+  newsletterOp!: any[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,6 +35,7 @@ export class DataFormComponent implements OnInit {
     this.estados = this.dropdownService.getEstadosBr();
     this.cargos = this.dropdownService.getCargos();
     this.tecnologias = this.dropdownService.getTecnologias();
+    this.newsletterOp = this.dropdownService.getNewsletter();
 
     // pegar os dados do serviço ao iniciar
     /* this.dropdownService.getEstadosBr()
@@ -66,7 +68,8 @@ export class DataFormComponent implements OnInit {
       }),
 
       cargo: [null],
-      tecnologias: [null]
+      tecnologias: [null],
+      newsletter: ['s']
     })
 
 
