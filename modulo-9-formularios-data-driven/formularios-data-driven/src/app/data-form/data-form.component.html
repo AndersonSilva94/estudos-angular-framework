@@ -38,6 +38,21 @@
       </app-campo-control-erro>
     </div>
 
+    <div class="form-group mt-3 col-sm-12">
+      <label for="confirmarEmail">Confirmar Email</label>
+      <input
+        type="confirmarEmail"
+        formControlName="confirmarEmail"
+        class="form-control"
+        id="confirmarEmail"
+        aria-describedby="emailHelp"
+        placeholder="nome@email.com"
+      >
+      <app-campo-control-erro
+        [mostrarErro]="formulario.get('confirmarEmail')?.hasError('equalsTo')" msgErro="Emails não são iguais.">
+      </app-campo-control-erro>
+    </div>
+
     <div class="row" formGroupName="endereco">
 
       <div class="form-group mt-3 col-md-3">
