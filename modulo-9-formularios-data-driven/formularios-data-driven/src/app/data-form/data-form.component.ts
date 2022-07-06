@@ -60,7 +60,7 @@ export class DataFormComponent implements OnInit {
       nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       email: [null, [Validators.required, Validators.email]],
       endereco: this.formBuilder.group({
-        cep: [null, Validators.required],
+        cep: [null, [Validators.required, FormValidations.cepValidator]],
         numero: [null, Validators.required],
         complemento: [null],
         rua: [null, Validators.required],
@@ -147,6 +147,11 @@ export class DataFormComponent implements OnInit {
     return !this.formulario.get(campo)?.valid && (this.formulario.get(campo)?.touched || this.formulario.get(campo)?.dirty);
   }
 
+  verificaRequired(campo: string) {
+    return (
+      this.formulario.get(campo)?.hasError('required') && (this.formulario.get(campo)?.touched || this.formulario.get(campo)?.dirty));
+  }
+
   verificaEmailInvalido() {
     let campoEmail = this.formulario.get('email');
     if (campoEmail?.errors) {
@@ -171,7 +176,7 @@ export class DataFormComponent implements OnInit {
     this.formulario.patchValue({
       endereco: {
         rua: dados.logradouro,
-        cep: dados.cep,
+        // cep: dados.cep,
         complemento: dados.complemento,
         bairro: dados.bairro,
         cidade: dados.localidade,
