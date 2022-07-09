@@ -71,8 +71,8 @@
           id="cep"
           class="form-control"
           formControlName="cep"
-          (blur)="consultaCEP()"
-        >
+          >
+          <!-- (blur)="consultaCEP()" -->
         <app-campo-control-erro
           [mostrarErro]="verificaRequired('endereco.cep')" msgErro="CEP é obrigatório.">
         </app-campo-control-erro>
