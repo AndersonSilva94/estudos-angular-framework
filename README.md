@@ -12,7 +12,7 @@ O repositório apresenta todos os estudos realizados no curso de Angular da prof
 - [x] Pipes (Filtros);
 - [x] Rotas;
 - [x] Formulários (Template Driven);
-- [ ] Formulários Reativos (data-driven);
+- [x] Formulários Reativos (data-driven);
 - [ ] Http;
 - [ ] Depuração / Debug;
 - [ ] Build e Deploy;
