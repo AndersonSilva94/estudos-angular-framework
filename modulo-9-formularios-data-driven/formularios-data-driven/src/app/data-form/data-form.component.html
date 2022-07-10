@@ -47,21 +47,6 @@
       placeholder="nome@email.com"
     ></app-input-field>
 
-    <!-- <div class="form-group mt-3 col-sm-12">
-      <label for="confirmarEmail">Confirmar Email</label>
-      <input
-        type="confirmarEmail"
-        formControlName="confirmarEmail"
-        class="form-control"
-        id="confirmarEmail"
-        aria-describedby="emailHelp"
-        placeholder="nome@email.com"
-      >
-      <app-campo-control-erro
-        [mostrarErro]="formulario.get('confirmarEmail')?.hasError('equalsTo')" msgErro="Emails não são iguais.">
-      </app-campo-control-erro>
-    </div> -->
-
     <div class="row" formGroupName="endereco">
 
       <div class="form-group mt-3 col-md-3">
@@ -113,15 +98,24 @@
         <input type="text" id="bairro" class="form-control" formControlName="bairro">
       </div>
 
-      <div class="form-group mt-3 col-md-4">
+      <div class="form-group mt-3 col-md-3">
+        <label for="cidade" class="control-label">Cidade</label>
+        <select id="estado" class="form-control" formControlName="cidade">
+          <option *ngFor="let cidade of cidades" [value]="cidade.nome">
+            {{ cidade.nome }}
+          </option>
+        </select>
+      </div>
+
+      <!-- <div class="form-group mt-3 col-md-4">
         <label for="cidade" class="control-label">Cidade</label>
         <input type="text" id="cidade" class="form-control" formControlName="cidade">
-      </div>
+      </div> -->
 
       <div class="form-group mt-3 col-md-3">
         <label for="estado" class="control-label">Estado</label>
         <select id="estado" class="form-control" formControlName="estado">
-          <option *ngFor="let estado of estados | async" [value]="estado.sigla">
+          <option *ngFor="let estado of estados" [value]="estado.sigla">
             {{ estado.nome }}
           </option>
         </select>

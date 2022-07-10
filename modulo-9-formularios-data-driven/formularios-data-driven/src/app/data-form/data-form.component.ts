@@ -9,6 +9,7 @@ import { empty, Observable } from 'rxjs';
 import { FormValidations } from '../shared/form-validations';
 import { VerificaEmailService } from './services/verifica-email.service';
 import { BaseFormComponent } from '../shared/base-form/base-form.component';
+import { Cidade } from '../shared/models/cidade-br';
 
 @Component({
   selector: 'app-data-form',
@@ -18,8 +19,9 @@ import { BaseFormComponent } from '../shared/base-form/base-form.component';
 export class DataFormComponent extends BaseFormComponent implements OnInit {
 
   // a exclamação é uma forma de não instanciar uma classe
-  // estados!: EstadoBr[];
-  estados!: Observable<EstadoBr[]>;
+  estados!: EstadoBr[];
+  cidades!: Cidade[];
+  // estados!: Observable<EstadoBr[]>;
   cargos!: any[];
   tecnologias!: any[];
   newsletterOp!: any[];
@@ -40,7 +42,9 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
     // this.verificaEmailService.verificarEmail('email@email.com').subscribe()
 
     // dessa forma, o async no html faz o unsubscribe e impede vazemento de memória
-    this.estados = this.dropdownService.getEstadosBr();
+    // this.estados = this.dropdownService.getEstadosBr();
+    this.dropdownService.getEstadosBr()
+      .subscribe(dados => this.estados = dados);
     this.cargos = this.dropdownService.getCargos();
     this.tecnologias = this.dropdownService.getTecnologias();
     this.newsletterOp = this.dropdownService.getNewsletter();
@@ -93,6 +97,17 @@ export class DataFormComponent extends BaseFormComponent implements OnInit {
         )
       )
       .subscribe(dados => dados ? this.populaDadosForm(dados) : {});
+
+      // this.dropdownService.getCidades(8).subscribe(console.log);
+      this.formulario.get('endereco.estado')?.valueChanges
+        .pipe(
+          tap(estado => console.log('Novo estado: ', estado)),
+          map(estado => this.estados.filter(e => e.sigla === estado)),
+          map(estados => estados && estados.length > 0 ? estados[0].id : empty()),
+          switchMap((estadoId: any) => this.dropdownService.getCidades(estadoId)),
+          tap(console.log)
+        )
+        .subscribe(cidades => this.cidades = cidades);
   }
 
   buildFrameworks() {
