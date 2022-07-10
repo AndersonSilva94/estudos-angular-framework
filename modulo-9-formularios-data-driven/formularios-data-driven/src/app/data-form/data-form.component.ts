@@ -8,16 +8,16 @@ import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 import { empty, Observable } from 'rxjs';
 import { FormValidations } from '../shared/form-validations';
 import { VerificaEmailService } from './services/verifica-email.service';
+import { BaseFormComponent } from '../shared/base-form/base-form.component';
 
 @Component({
   selector: 'app-data-form',
   templateUrl: './data-form.component.html',
   styleUrls: ['./data-form.component.css']
 })
-export class DataFormComponent implements OnInit {
+export class DataFormComponent extends BaseFormComponent implements OnInit {
 
   // a exclamação é uma forma de não instanciar uma classe
-  formulario!: FormGroup;
   // estados!: EstadoBr[];
   estados!: Observable<EstadoBr[]>;
   cargos!: any[];
@@ -31,7 +31,9 @@ export class DataFormComponent implements OnInit {
     private dropdownService: DropdownService,
     private cepService: ConsultaCepService,
     private verificaEmailService: VerificaEmailService
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
 
@@ -107,7 +109,7 @@ export class DataFormComponent implements OnInit {
     ]) */
   }
 
-  onSubmit() {
+  submit() {
     console.log(this.formulario)
 
     let valueSubmit = Object.assign({}, this.formulario.value);
@@ -118,8 +120,7 @@ export class DataFormComponent implements OnInit {
         .filter((v: any) => v !== null)
     })
 
-    if (this.formulario.valid) {
-      this.http.post('https://httpbin.org/post', JSON.stringify(valueSubmit))
+    this.http.post('https://httpbin.org/post', JSON.stringify(valueSubmit))
         .pipe(map(dados => dados))
         .subscribe(dados => {
           console.log(dados);
@@ -129,50 +130,6 @@ export class DataFormComponent implements OnInit {
         },
           (err: any) => alert('erro')
         );
-    } else {
-      // console.log('formulario inválido')
-
-      this.verificaValidacoesForm(this.formulario)
-
-    }
-
-  }
-
-  // método genérico para fazer validação em qualquer formulário
-  // os dados entram e verificam se é do tipo FormGroup caso seja, o método é chamado de novo
-  verificaValidacoesForm(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(
-      campo => {
-        console.log(campo)
-        const controle = formGroup.get(campo);
-        controle?.markAsDirty();
-
-        if (controle instanceof FormGroup) {
-          this.verificaValidacoesForm(controle);
-        }
-
-      }
-    );
-  }
-
-  resetar() {
-    this.formulario.reset();
-  }
-
-  verificaValidTouched(campo: any) {
-    return !this.formulario.get(campo)?.valid && (this.formulario.get(campo)?.touched || this.formulario.get(campo)?.dirty);
-  }
-
-  verificaRequired(campo: string) {
-    return (
-      this.formulario.get(campo)?.hasError('required') && (this.formulario.get(campo)?.touched || this.formulario.get(campo)?.dirty));
-  }
-
-  verificaEmailInvalido() {
-    let campoEmail = this.formulario.get('email');
-    if (campoEmail?.errors) {
-      return campoEmail?.errors['email'] && campoEmail.touched;
-    }
   }
 
   consultaCEP() {

@@ -8,6 +8,7 @@ import { TemplateFormComponent } from './template-form/template-form.component';
 import { DataFormModule } from './data-form/data-form.module';
 import { FormDebugComponent } from './form-debug/form-debug.component';
 import { CampoControlErroComponent } from './campo-control-erro/campo-control-erro.component';
+// import { BaseFormComponent } from './shared/base-form/base-form.component';
 // import { InputFieldComponent } from './shared/input-field/input-field.component';
 // import { ErrorMsgComponent } from './shared/error-msg/error-msg.component';
 // import { DataFormComponent } from './data-form/data-form.component';
@@ -16,6 +17,7 @@ import { CampoControlErroComponent } from './campo-control-erro/campo-control-er
   declarations: [
     AppComponent,
     TemplateFormComponent,
+    // BaseFormComponent,
     // InputFieldComponent,
     // ErrorMsgComponent,
     // CampoControlErroComponent,
