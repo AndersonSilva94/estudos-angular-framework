@@ -1,19 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { DropdownService } from '../services/dropdown.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorMsgComponent } from '../error-msg/error-msg.component';
+import { InputFieldComponent } from '../input-field/input-field.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    ErrorMsgComponent
+    ErrorMsgComponent,
+    InputFieldComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule
   ],
   exports: [
-    ErrorMsgComponent
+    ErrorMsgComponent,
+    InputFieldComponent
   ],
   providers: [
     DropdownService

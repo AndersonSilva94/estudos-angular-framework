@@ -1,0 +1,16 @@
+<div
+  class="form-group">
+  <label [attr.for]="id">{{ label }}</label>
+  <input
+    [type]="type"
+    class="form-control"
+    [id]="id" aria-describedby="nomeHelp"
+    [placeholder]="placeholder"
+    [readonly]="!!isReadOnly"
+    [(ngModel)]="value"
+    (blur)="onTouchedCb(null)"
+  >
+  <app-error-msg
+    [control]="control" [label]="label">
+  </app-error-msg>
+</div>

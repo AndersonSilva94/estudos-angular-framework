@@ -4,21 +4,14 @@
   (ngSubmit)="onSubmit()"
 >
   <div class="row">
-    <div
-      class="form-group col-sm-12"
-    >
-      <label for="nome">Nome</label>
-      <input
-        type="text"
-        formControlName="nome"
-        class="form-control"
-        id="nome" aria-describedby="nomeHelp"
-        placeholder="Seu nome"
-      >
-      <app-error-msg
-        [control]="$any(formulario).get('nome')" label="Nome">
-      </app-error-msg>
-    </div>
+    <app-input-field
+      class="col-sm-12"
+      formControlName="nome"
+      id="nome"
+      label="Nome"
+      [control]="$any(formulario).get('nome')"
+      placeholder="Seu nome"
+    ></app-input-field>
 
     <div class="form-group mt-3 col-sm-12">
       <label for="email">Email</label>
@@ -30,12 +23,9 @@
         aria-describedby="emailHelp"
         placeholder="nome@email.com"
       >
-      <app-campo-control-erro
-        [mostrarErro]="verificaValidTouched('email')" msgErro="Email é obrigatório.">
-      </app-campo-control-erro>
-      <app-campo-control-erro
-        [mostrarErro]="verificaEmailInvalido()" msgErro="Email inválido.">
-      </app-campo-control-erro>
+      <app-error-msg
+        [control]="$any(formulario).get('email')" label="Email">
+      </app-error-msg>
       <app-campo-control-erro
         [mostrarErro]="formulario.get('email')?.status === 'PENDING'" msgErro="Validando email...">
       </app-campo-control-erro>
@@ -47,7 +37,17 @@
       </app-campo-control-erro>
     </div>
 
-    <div class="form-group mt-3 col-sm-12">
+    <app-input-field
+      class="mt-3 col-sm-12"
+      formControlName="confirmarEmail"
+      type="email"
+      id="confirmarEmail"
+      label="Confirmar Email"
+      [control]="$any(formulario).get('confirmarEmail')"
+      placeholder="nome@email.com"
+    ></app-input-field>
+
+    <!-- <div class="form-group mt-3 col-sm-12">
       <label for="confirmarEmail">Confirmar Email</label>
       <input
         type="confirmarEmail"
@@ -60,7 +60,7 @@
       <app-campo-control-erro
         [mostrarErro]="formulario.get('confirmarEmail')?.hasError('equalsTo')" msgErro="Emails não são iguais.">
       </app-campo-control-erro>
-    </div>
+    </div> -->
 
     <div class="row" formGroupName="endereco">
 
@@ -73,9 +73,9 @@
           formControlName="cep"
           >
           <!-- (blur)="consultaCEP()" -->
-        <app-campo-control-erro
-          [mostrarErro]="verificaRequired('endereco.cep')" msgErro="CEP é obrigatório.">
-        </app-campo-control-erro>
+        <app-error-msg
+          [control]="$any(formulario).get('endereco.cep')" label="CEP">
+        </app-error-msg>
         <app-campo-control-erro
           [mostrarErro]="formulario.get('endereco.cep')?.hasError('cepInvalido')" msgErro="CEP inválido">
         </app-campo-control-erro>
