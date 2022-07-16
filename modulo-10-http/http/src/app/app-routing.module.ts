@@ -6,7 +6,13 @@ const routes: Routes = [
   {
     path: 'cursos',
     loadChildren: () => import('./cursos/cursos.module').then(m => m.CursosModule)
+  },
+  {
+    path: 'rxjs-poc',
+    loadChildren: () => import('./unsubscribe-rxjs/unsubscribe-rxjs.module')
+      .then(m => m.UnsubscribeRxjsModule)
   }
+
 ];
 
 @NgModule({
