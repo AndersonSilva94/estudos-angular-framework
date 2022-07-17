@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { catchError, empty, Observable, Subject, takeUntil } from 'rxjs';
 import { Curso } from '../curso';
 import { CursosService } from '../cursos.service';
 
@@ -13,6 +13,7 @@ export class CursosListaComponent implements OnInit {
 
   // cursos!: Curso[];
   cursos$!: Observable<Curso[]>; // usar a notação $ ao final pra indicar que é um observable
+  error$ = new Subject<boolean>();
 
   unsubscribe: Subject<void> = new Subject();
 
@@ -22,7 +23,7 @@ export class CursosListaComponent implements OnInit {
 
   ngOnInit(): void {
     // this.listarCursos();
-    this.cursos$ = this.service.list();
+    this.onRefresh()
   }
 
   /* listarCursos() {
@@ -30,5 +31,25 @@ export class CursosListaComponent implements OnInit {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(dados => this.cursos = dados);
   } */
+
+  onRefresh() {
+    this.cursos$ = this.service.list()
+      .pipe(
+        catchError(error => {
+          console.error(error);
+          this.error$.next(true);
+          return empty()
+        })
+      )
+
+      this.service.list()
+      .subscribe(
+        dados => {
+          console.log(dados);
+        },
+        error => console.error(error),
+        () => console.log('Observable completo!')
+      )
+  }
 
 }
