@@ -49,14 +49,14 @@ export class CursosListaComponent implements OnInit {
         })
       )
 
-      this.service.list()
+      /* this.service.list()
       .subscribe(
         dados => { // retorno de sucesso
           console.log(dados);
         },
         error => console.error(error), // retorno com erro
         () => console.log('Observable completo!') // finalizando
-      )
+      ) */
   }
 
   handleError() {
