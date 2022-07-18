@@ -5,8 +5,8 @@
       "nome": "Angular"
     },
     {
-      "nome": "React",
-      "id": 2
+      "id": 2,
+      "nome": "React.JS"
     },
     {
       "nome": "Angular Material",
@@ -21,8 +21,16 @@
       "id": 5
     },
     {
-      "nome": "Sequelize",
-      "id": 6
+      "id": 6,
+      "nome": "Sequelize ORM"
+    },
+    {
+      "id": 7,
+      "nome": "Python"
+    },
+    {
+      "id": 8,
+      "nome": "WebSocket"
     }
   ]
 }
