@@ -37,3 +37,6 @@
 **/libpeerconnection.log
 **/testem.log
 **/typings
+
+# node
+/server/uploads
