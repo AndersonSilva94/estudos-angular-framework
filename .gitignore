@@ -39,4 +39,4 @@
 **/typings
 
 # node
-/server/uploads
+**/server/uploads/**

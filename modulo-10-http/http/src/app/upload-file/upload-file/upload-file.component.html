@@ -4,3 +4,6 @@
     <label class="custom-file-label" id="customFileLabel" for="customFile">Escolher arquivo</label>
   </div>
 </div>
+<div class="mt-4">
+  <button type="button" class="btn btn-primary" (click)="onUpload()" [disabled]="!files">Upload</button>
+</div>
