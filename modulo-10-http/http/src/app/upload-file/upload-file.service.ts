@@ -22,4 +22,35 @@ export class UploadFileService {
       reportProgress: true
     })
   }
+
+  download(url: string) {
+    return this.http.get(url, {
+      responseType: 'blob' as 'json',
+      // reportProgress -> content-length -> é preciso que o back-end forneça essa informação
+    })
+  }
+
+  handleFile(res: any, fileName: string) {
+    const file = new Blob([res], {
+      type: res.type
+    });
+
+    // IE
+    if (window.navigator && (window.navigator as any).msSaveOrOpenBlob) {
+      (window.navigator as any).msSaveOrOpenBlob(file);
+      return;
+    }
+
+    //Chrome
+    const blob = window.URL.createObjectURL(file);
+
+    const link = document.createElement('a');
+    link.href = blob;
+    link.download = fileName;
+
+    link.click();
+
+    window.URL.revokeObjectURL(blob);
+    link.remove();
+  }
 }

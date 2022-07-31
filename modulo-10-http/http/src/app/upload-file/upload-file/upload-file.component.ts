@@ -61,4 +61,18 @@ export class UploadFileComponent implements OnInit {
     }
   }
 
+  onDownloadPowerPoint() {
+    this.service.download(`${environment.BASE_URL}/downloadPowerPoint`)
+      .subscribe((res: any) => {
+        this.service.handleFile(res, 'delivery.pptx');
+      })
+  }
+
+  onDownloadPDF() {
+    this.service.download(`${environment.BASE_URL}/downloadPowerPoint`)
+      .subscribe((res: any) => {
+        this.service.handleFile(res, 'curriculum.pdf');
+      })
+  }
+
 }
