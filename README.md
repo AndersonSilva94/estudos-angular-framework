@@ -15,7 +15,7 @@ O repositório apresenta todos os estudos realizados no curso de Angular da prof
 - [x] Formulários Reativos (data-driven);
 - [x] Http;
 - [x] Depuração / Debug;
-- [ ] Build e Deploy;
+- [x] Build e Deploy;
 
 ---
 :keyboard: com :purple_heart: por [Anderson Silva (Andy)](https://www.linkedin.com/in/andssilva/) 😊
