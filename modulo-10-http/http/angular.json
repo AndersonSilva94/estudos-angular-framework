@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "http:build:production",
+            "firebaseProject": "curso-angular-andy-silva",
+            "firebaseHostingSite": "curso-angular-andy-silva"
+          }
         }
       }
     }

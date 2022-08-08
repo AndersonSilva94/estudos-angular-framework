@@ -1,4 +1,13 @@
 {
+  "targets": {
+    "curso-angular-andy-silva": {
+      "hosting": {
+        "http": [
+          "curso-angular-andy-silva"
+        ]
+      }
+    }
+  },
   "projects": {
     "default": "curso-angular-andy-silva"
   }
